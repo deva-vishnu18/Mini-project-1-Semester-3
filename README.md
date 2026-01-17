@@ -58,6 +58,8 @@ All sensors and actuators are controlled using an **Arduino UNO microcontroller*
 - Plywood frame  
 
 ---
+## Circuit diagram
+<img width="2500" height="1345" alt="circuit_image" src="https://github.com/user-attachments/assets/ea1bc3ba-1325-4e82-8875-8350a971b093" />
 
 ## 💻 Software & Tools Used
 
@@ -65,7 +67,10 @@ All sensors and actuators are controlled using an **Arduino UNO microcontroller*
 - AutoCAD (2D design)  
 - Fusion 360 (3D modeling)  
 - SolidWorks (stimulation)  
-- ANSYS (Basic analysis)  
+- ANSYS (Basic analysis)
+  
+## 3D Modelling
+<img width="630" height="452" alt="Screenshot 2025-11-13 213835" src="https://github.com/user-attachments/assets/fc981f7a-b2f6-49d9-9961-9988db1a5531" />
 
 ---
 
