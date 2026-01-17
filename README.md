@@ -51,8 +51,8 @@ All sensors and actuators are controlled using an **Arduino UNO microcontroller*
 - Arduino UNO  
 - Inductive Proximity Sensor (Metal detection)  
 - Capacitive Proximity Sensor (Plastic detection)  
-- Infrared Sensors (Path confirmation)  
-- Servo Motors (Sorting mechanism)  
+- Infrared Sensors (Path confirmation) - 2 
+- Servo Motors (Sorting mechanism) - 2
 - 12V DC Geared Motor (Conveyor drive)  
 - Conveyor belt with PVC rollers  
 - Plywood frame  
@@ -64,7 +64,7 @@ All sensors and actuators are controlled using an **Arduino UNO microcontroller*
 - Arduino IDE (C programming)  
 - AutoCAD (2D design)  
 - Fusion 360 (3D modeling)  
-- SolidWorks (CAD modeling)  
+- SolidWorks (stimulation)  
 - ANSYS (Basic analysis)  
 
 ---
@@ -86,7 +86,7 @@ Materials not detected are sent to a default bin.
 - Overall system accuracy: **~80%**  
 - Throughput: **600–800 items/hour (lab conditions)**  
 
-These results validate the feasibility of automated waste segregation at a prototype level :contentReference[oaicite:1]{index=1}
+These results validate the feasibility of automated waste segregation at a prototype level:contentReference[oaicite:1]{index=1}
 
 ---
 
@@ -117,4 +117,4 @@ This mini project successfully demonstrates a low-cost, sensor-based waste segre
 
 ## 📎 Reference
 
-Project documentation and performance data are based on the official Mini Project report submitted to Mepco Schlenk Engineering College, Sivakasi :contentReference[oaicite:2]{index=2}
+Project documentation and performance data are based on the official Mini Project report submitted to Mepco Schlenk Engineering College, Sivakasi.
