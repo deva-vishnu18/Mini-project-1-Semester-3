@@ -1,0 +1,103 @@
+#include <Servo.h>
+
+// Pin definitions
+#define PROX_SENSOR_1 4  // Ceyone inductive sensor
+#define PROX_SENSOR_2 5  // Lefircko capacitive sensor  
+#define SERVO_1 9
+#define SERVO_2 10
+
+// Servo objects
+Servo servo1, servo2;
+
+// Servo positions for clockwise movement
+const int SERVO_REST = 0;      // Rest position (0°)
+const int SERVO_CLOCKWISE = 90; // Clockwise position (90°)
+
+// Track servo state to prevent multiple movements
+bool servo1Moved = false;
+bool servo2Moved = false;
+
+void setup() {
+  // Initialize pins
+  pinMode(PROX_SENSOR_1, INPUT);
+  pinMode(PROX_SENSOR_2, INPUT);
+  
+  // Attach servos with an extended pulse range for better movement
+  servo1.attach(SERVO_1, 500, 2500);  // Extended pulse range
+  servo2.attach(SERVO_2, 500, 2500);  // Extended pulse range
+  
+  // Move servos to rest position with a delay to ensure they reach position
+  servo1.write(SERVO_REST);
+  servo2.write(SERVO_REST);
+  delay(1000); // Give servos time to reach rest position
+  
+  Serial.begin(9600);
+  Serial.println("Metal Detection System Started - 1 second response time, 2 sorts per detection");
+}
+
+void loop() {
+  // Read proximity sensors
+  bool metal1 = digitalRead(PROX_SENSOR_1);
+  bool metal2 = digitalRead(PROX_SENSOR_2);
+  
+  // PATH 1: If metal is detected AND the servo hasn't moved yet
+  if (metal1 == LOW && !servo1Moved) {
+    Serial.println("PATH 1: Metal detected - Starting sort in 1 second...");
+    delay(1000); // Wait 1 second first
+    
+    // First sort cycle
+    servo1.write(SERVO_CLOCKWISE);  // Rotate clockwise to 90°
+    Serial.println("PATH 1: Servo 1 first rotation clockwise 90°");
+    delay(500); // Increased delay to ensure servo reaches 90° position
+    
+    servo1.write(SERVO_REST);  // Return to rest position (0°)
+    Serial.println("PATH 1: Servo 1 returned to rest position");
+    delay(500); // Increased delay to ensure servo reaches rest position
+    
+    // Second sort cycle
+    servo1.write(SERVO_CLOCKWISE);  // Rotate clockwise to 90° again
+    Serial.println("PATH 1: Servo 1 second rotation clockwise 90°");
+    delay(500); // Increased delay to ensure servo reaches 90° position
+    
+    servo1.write(SERVO_REST);  // Return to rest position (0°)
+    servo1Moved = true;        // Mark as moved
+    Serial.println("PATH 1: Servo 1 completed 2 sorts and returned to rest");
+    delay(500); // Final delay to ensure position is reached
+  }
+  
+  // PATH 2: If material detected AND servo hasn't moved yet  
+  if (metal2 == LOW && !servo2Moved) {
+    Serial.println("PATH 2: Material detected - Starting sort in 1 second...");
+    delay(1000); // Wait 1 second first
+    
+    // First sort cycle
+    servo2.write(SERVO_CLOCKWISE);  // Rotate clockwise to 90°
+    Serial.println("PATH 2: Servo 2 first rotation clockwise 90°");
+    delay(500); // Increased delay to ensure servo reaches 90° position
+    
+    servo2.write(SERVO_REST);  // Return to rest position (0°)
+    Serial.println("PATH 2: Servo 2 returned to rest position");
+    delay(500); // Increased delay to ensure servo reaches rest position
+    
+    // Second sort cycle
+    servo2.write(SERVO_CLOCKWISE);  // Rotate clockwise to 90° again
+    Serial.println("PATH 2: Servo 2 second rotation clockwise 90°");
+    delay(500); // Increased delay to ensure servo reaches 90° position
+    
+    servo2.write(SERVO_REST);  // Return to rest position (0°)
+    servo2Moved = true;        // Mark as moved
+    Serial.println("PATH 2: Servo 2 completed 2 sorts and returned to rest");
+    delay(500); // Final delay to ensure position is reached
+  }
+  
+  // Reset flags when no metal is detected
+  if (metal1 == HIGH) {
+    servo1Moved = false;  // Reset flag for next detection
+  }
+  
+  if (metal2 == HIGH) {
+    servo2Moved = false;  // Reset flag for next detection
+  }
+  
+  delay(100); // Small delay for stability
+}
