@@ -13,13 +13,6 @@ The project was developed as **Mini Project – I** under the Department of Mech
 
 ---
 
-## 👤 Team Members
-
-- **Deva Vishnu K. S**
-- Agilan C. U  
-- Seenirajperumal M  
-
----
 
 ## 🎯 Objectives
 
